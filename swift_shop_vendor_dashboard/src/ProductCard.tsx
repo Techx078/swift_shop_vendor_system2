@@ -31,7 +31,7 @@ function ProductCard({ data, productList, product, setProductList }) {
     return (
         <>
             {productList.map((product, index) => (
-                <div key={index} className="bg-white rounded-lg shadow-lg m-4">
+                <div key={product.ProductId} className="bg-white rounded-lg shadow-lg m-4">
                     <div className="p-4">
                         {product.Price > 500 && (
                             <span className=' rounded-full bg-blue-600 px-3 my-2 py-1 text-xs font-semibold text-white shadow '>

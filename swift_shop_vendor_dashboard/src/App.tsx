@@ -8,11 +8,9 @@ function App() {
   return (
     <>
     <CartContextProvider >
-     
        <BrowserRouter>
        <Routes>
         <Route path="/" element={<Product />} />
-        <Route path="/cart" element={<ShowCart />} />
        </Routes>
        </BrowserRouter>
      </CartContextProvider>
