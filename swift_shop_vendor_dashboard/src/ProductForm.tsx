@@ -1,4 +1,5 @@
 import './App.css'
+import React from 'react';
 import { useEffect, useState } from 'react';
 import useFetchCategoryList from './Hooks/useFetchCategoryList';
 function ProductForm({ error, setError, product, setProduct, productList, setProductList }) {
@@ -150,7 +151,6 @@ function ProductForm({ error, setError, product, setProduct, productList, setPro
     </>
   )
 }
-
-export default ProductForm
+export default React.memo(ProductForm)
 
 

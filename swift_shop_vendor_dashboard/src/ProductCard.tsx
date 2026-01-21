@@ -1,5 +1,6 @@
 import './App.css'
-
+import React from 'react';
+import { usecartContext } from "./Context/CartContext"
 interface ProductType {
     ProductId: number;
     Name: string;
@@ -7,8 +8,22 @@ interface ProductType {
     Quantity: number;
     Category: string;
 }
+
 function ProductCard({ data, productList, product, setProductList }) {
 
+    const { cartProducts, setCartProducts } = usecartContext();
+
+    const addToCartHandler = (productId) => {
+        const hasProduct = cartProducts.some(product => product.ProductId);
+        if(hasProduct){
+            alert("This Product already exits in cart go there you can add quantities")
+            return
+        }
+        setCartProducts([...cartProducts,{
+            ...productList.find(product => product.ProductId === productId),
+            Quantity: 1
+        }])
+    }
     const handleDelete = (productId: number) => {
         setProductList(productList.filter(product => product.ProductId != productId))
         localStorage.setItem("Products", JSON.stringify(productList))
@@ -33,7 +48,7 @@ function ProductCard({ data, productList, product, setProductList }) {
                         <p className="mb-2">Price: {product.Price}</p>
                     </div>
                     <div className="flex justify-between p-4">
-                        <button className="bg-black text-white m-2 px-4 py-2 ">Edit product</button>
+                        <button className="bg-black text-white m-2 px-4 py-2 " onClick={() => addToCartHandler(product.ProductId)}>Add to cart</button>
                         <button className="bg-black text-white m-2 px-4 py-2 "
                             onClick={() => handleDelete(product.ProductId)}
                         >Delete product</button>
@@ -44,4 +59,5 @@ function ProductCard({ data, productList, product, setProductList }) {
     )
 }
 
-export default ProductCard
+
+export default React.memo(ProductCard)
