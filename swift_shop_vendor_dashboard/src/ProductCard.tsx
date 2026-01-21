@@ -14,7 +14,7 @@ function ProductCard({ data, productList, product, setProductList }) {
     const { cartProducts, setCartProducts } = usecartContext();
 
     const addToCartHandler = (productId) => {
-        const hasProduct = cartProducts.some(product => product.ProductId);
+        const hasProduct = cartProducts.find(product => product.ProductId==productId);
         if(hasProduct){
             alert("This Product already exits in cart go there you can add quantities")
             return
@@ -41,15 +41,14 @@ function ProductCard({ data, productList, product, setProductList }) {
                             <span className='rounded-full bg-orange-600 px-3 py-1 text-xs font-semibold text-white shadow '>
                                 Limited Quantity</span>
                         )}
-                        <h5 className="font-bold mb-2">{product.Name}</h5>
-                        <h6 className="mb-2">{product.Category}</h6>
+                        <h5 className="font-bold mb-2 dark:bg-black">{product.Name}</h5>
                         <p className="mb-2">Category: {product.Category}</p>
                         <p className="mb-2">Quantity: {product.Quantity}</p>
                         <p className="mb-2">Price: {product.Price}</p>
                     </div>
                     <div className="flex justify-between p-4">
-                        <button className="bg-black text-white m-2 px-4 py-2 " onClick={() => addToCartHandler(product.ProductId)}>Add to cart</button>
-                        <button className="bg-black text-white m-2 px-4 py-2 "
+                        <button className="bg-gray-500 text-black m-2 px-4 py-2 " onClick={() => addToCartHandler(product.ProductId)}>Add to cart</button>
+                        <button className="bg-gray-500 text-black m-2 px-4 py-2 "
                             onClick={() => handleDelete(product.ProductId)}
                         >Delete product</button>
                     </div>

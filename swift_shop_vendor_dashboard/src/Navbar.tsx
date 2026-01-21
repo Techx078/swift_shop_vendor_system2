@@ -2,17 +2,29 @@
 import { useState } from "react";
 import { HiX ,HiMenu} from "react-icons/hi";
 import roimalogo from "../public/roima.png"
+import { useEffect } from "react";
 
 export default function Navbar() {
     const [menuOpen, setMenuOpen] = useState(false);
-
+    const [theme,setTheme] = useState<string>(localStorage.getItem("theme"));
     const toggleMenu = () => setMenuOpen(!menuOpen);
-
+    const toggleThemeHandler = () => {
+        let newTheme = theme === "light" ? "dark":"light"
+        localStorage.setItem("theme",newTheme)
+        setTheme(newTheme)
+        document.documentElement.classList.toggle("dark",theme == "dark");     
+    }
+    useEffect(() => {
+        if(theme == "dark"){
+            document.documentElement.classList.toggle("dark",true);  
+        }
+    }, []);
     return (
         <nav className="bg-white shadow-md fixed w-full mb-4 dark:bg-black">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between h-20 items-center">
                     {/* Logo */}
+                    
                     <div className="flex-shrink-0 ">
 
                         <img
@@ -26,6 +38,12 @@ export default function Navbar() {
                     <div className="hidden md:flex space-x-4  items-center">
 
                         <>
+                        <p>
+                            <button className="rounded-2xl border-amber-300 dark:bg-black"
+                            onClick={
+                                () => toggleThemeHandler()
+                            }
+                            >{theme === "light" ? "dark" : "light"}</button></p>
                             <span className="text-gray-700">Welcome, here </span>
                             <p
 

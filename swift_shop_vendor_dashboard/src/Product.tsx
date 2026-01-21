@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import ProductCard from './ProductCard';
 import ProductForm from './ProductForm';
 import useFetchCategoryList from './Hooks/useFetchCategoryList';
+import Navbar from './Navbar';
+import ShowCart from './ShowCart';
 interface ProductType {
   ProductId: number;
   Name: string;
@@ -67,10 +69,11 @@ function Product() {
   };
   return (
     <>
+     <Navbar  />
       <div className='grid grid-cols-3 mt-[90px] '>
         <div>
           <div>
-            <label className=" text-gray-700 mb-1">Category</label>
+            <label className=" text-gray-700 mb-1 ">Category</label>
             <select
               name="Category"
               value={category}
@@ -100,6 +103,7 @@ function Product() {
           </>
         </div>
       </div>
+     <ShowCart />
 
       <div>
         <>

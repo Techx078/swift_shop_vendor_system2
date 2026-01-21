@@ -3,13 +3,18 @@ import Product from './Product'
 import Navbar from './Navbar'
 import CartContextProvider from './Context/CartContext'
 import ShowCart from './ShowCart'
+import {BrowserRouter, Routes, Route } from "react-router-dom";
 function App() {
   return (
     <>
     <CartContextProvider >
-      <Navbar  />
-      <Product />
-      <ShowCart />
+     
+       <BrowserRouter>
+       <Routes>
+        <Route path="/" element={<Product />} />
+        <Route path="/cart" element={<ShowCart />} />
+       </Routes>
+       </BrowserRouter>
      </CartContextProvider>
     </>
   )
